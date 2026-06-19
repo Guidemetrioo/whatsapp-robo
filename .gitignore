@@ -1,0 +1,17 @@
+# Dependências
+/node_modules/
+
+# Configurações Locais e Credenciais
+.env*.local
+.env
+
+# Sessões do WhatsApp Web (Segurança)
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Arquivos de Sistema e Compilação
+/build/
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+npm-debug.log*

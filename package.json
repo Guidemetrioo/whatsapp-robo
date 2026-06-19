@@ -1,0 +1,21 @@
+{
+  "name": "whatsapp-booking-bot",
+  "version": "1.0.0",
+  "description": "Robô de agendamento automático e lembretes via WhatsApp integrado ao Supabase",
+  "main": "src/bot/bot.ts",
+  "scripts": {
+    "start": "tsx src/bot/bot.ts",
+    "dev": "tsx --watch src/bot/bot.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "github:wwebjs/whatsapp-web.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/qrcode-terminal": "^0.12.2",
+    "tsx": "^4.15.5",
+    "typescript": "^5.4.5"
+  }
+}
