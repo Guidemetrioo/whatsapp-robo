@@ -188,9 +188,24 @@ client.on("message", async (msg) => {
     console.warn("⚠️ [Chat Inbox] Falha ao processar mensagem recebida:", err.message || err);
   }
 
-  // Auto-responder flow logic
+  // Auto-responder flow logic (check if chatbot responses are enabled in Supabase)
   try {
-    await handleIncomingMessage(msg, client);
+    const supabase = getSupabase();
+    if (supabase) {
+      const { data: config } = await supabase
+        .from("whatsapp_config")
+        .select("enable_responses")
+        .eq("id", 1)
+        .maybeSingle();
+
+      if (config && config.enable_responses === false) {
+        console.log("ℹ️ [Chatbot Flow] Auto-respostas (chatbot) desativadas nas configurações.");
+      } else {
+        await handleIncomingMessage(msg, client);
+      }
+    } else {
+      await handleIncomingMessage(msg, client);
+    }
   } catch (flowErr: any) {
     console.error("❌ [Chatbot Flow] Erro ao rodar fluxo para mensagem recebida:", flowErr.message || flowErr);
   }
